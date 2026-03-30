@@ -107,6 +107,13 @@ ul {
     display: flex;
     width: 10vw;
     max-width: 4rem;
+    flex-shrink: 0;
+}
+
+.logo-icon svg {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .logo-words {
