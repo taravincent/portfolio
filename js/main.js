@@ -103,10 +103,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 const img = item.querySelector("img").src;
                 const title = item.querySelector("h3").innerText;
                 const category = item.querySelector("p").innerText;
+                const descElem = item.querySelector(".portfolio-desc");
+                const description = descElem ? descElem.innerText : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
+                const videoId = item.getAttribute("data-video-id");
 
-                lightboxImg.src = img;
+                const lightboxVideo = document.getElementById("lightbox-video");
+                const lightboxDesc = document.getElementById("lightbox-description");
+
                 lightboxTitle.innerText = title;
                 lightboxCategory.innerText = category;
+                lightboxDesc.innerText = description;
+
+                if (videoId) {
+                    lightboxImg.style.display = "none";
+                    lightboxVideo.style.display = "block";
+                    lightboxVideo.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+                } else {
+                    if (lightboxVideo) {
+                        lightboxVideo.style.display = "none";
+                        lightboxVideo.src = "";
+                    }
+                    lightboxImg.style.display = "block";
+                    lightboxImg.src = img;
+                }
 
                 lightbox.classList.add("active");
                 document.body.style.overflow = "hidden"; // Prevent scrolling
@@ -116,6 +135,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const closeLightbox = () => {
             lightbox.classList.remove("active");
             document.body.style.overflow = "";
+            const lightboxVideo = document.getElementById("lightbox-video");
+            if (lightboxVideo) lightboxVideo.src = ""; // Stops playback
         };
 
         lightboxClose.addEventListener("click", closeLightbox);
