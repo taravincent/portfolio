@@ -100,8 +100,28 @@ ul {
     letter-spacing: 1px;
     color: var(--text-main);
     z-index: 1001;
+
+}
+
+.logo-icon {
     width: 10vw;
-    max-width: 70px;
+    max-width: 4rem;
+}
+
+.logo-words {
+    line-height: 1;
+    margin: 0 1rem;
+    text-align: center;
+}
+
+.logo-name {
+    font-variant: all-small-caps;
+}
+
+.logo-tagline {
+    font-variant: all-small-caps;
+    font-size: small;
+    letter-spacing: 1.7px;
 }
 
 .nav-links {
