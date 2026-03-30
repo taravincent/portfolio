@@ -211,6 +211,60 @@ ul {
     text-align: center;
 }
 
+.layout-split {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 80px 5% 0 5%;
+    position: relative;
+}
+
+.hero-offset-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-text {
+    position: relative;
+    margin-left: -3rem;
+    /* Creates the offset overlapping look */
+    text-align: center;
+    max-width: 500px;
+    z-index: 2;
+}
+
+.hero-image-container {
+    flex: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-pic {
+    max-height: 22rem;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    filter: drop-shadow(-10px 10px 20px rgba(0, 0, 0, 0.5));
+    transition: var(--transition-med);
+}
+
+.hero-pic:hover {
+    transform: scale(1.02);
+    filter: drop-shadow(-15px 15px 30px rgba(233, 0, 255, 0.3));
+}
+
+
 .glitch {
     font-size: 5rem;
     font-weight: 800;
@@ -492,7 +546,7 @@ ul {
     flex: 1;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
 }
 
 .lightbox-img-wrapper img {
@@ -672,5 +726,58 @@ footer {
 
     .contact-wrapper {
         padding: 2rem 1rem;
+    }
+
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding-top: 80px;
+        /* Offset the fixed header */
+        padding-bottom: 3rem;
+    }
+
+    .layout-split {
+        padding-top: 2rem;
+        height: auto;
+        display: flex;
+    }
+
+    .hero-offset-wrapper {
+        flex-direction: column;
+        /* Image is first in HTML, so image stays on top */
+        align-items: center;
+        width: 100%;
+    }
+
+    .hero-text {
+        position: relative;
+        left: 0;
+        margin-left: 0;
+        text-align: center;
+        margin-bottom: 2rem;
+        margin-top: -2rem;
+        /* Pull the content up to slightly overlap the image */
+        z-index: 3;
+        /* Ensure it stays above the image */
+    }
+
+    .hero-text h1,
+    .hero-text .subtitle {
+        display: none;
+        /* Hide name and job title on mobile as requested */
+    }
+
+    .hero-image-container {
+        align-items: center;
+        /* Center the image in its container */
+        justify-content: center;
+        height: auto;
+        width: 100%;
+    }
+
+    .hero-pic {
+        position: relative;
+        max-height: 22rem;
+        right: auto;
     }
 }
