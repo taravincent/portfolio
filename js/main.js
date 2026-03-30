@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener("scroll", () => {
         let current = "";
-        
+
         // Sticky glass effect adjustment
         if (window.scrollY > 50) {
             navbar.style.padding = "0.8rem 5%";
@@ -53,9 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // ---------- ISOTOPE PORTFOLIO FILTERING ----------
     // Initialize Isotope after images are loaded
     const grid = document.querySelector('.grid');
-    
+
     if (grid && typeof imagesLoaded === 'function' && typeof Isotope === 'function') {
-        imagesLoaded(grid, function() {
+        imagesLoaded(grid, function () {
             const iso = new Isotope(grid, {
                 itemSelector: '.element-item',
                 layoutMode: 'fitRows',
@@ -74,12 +74,12 @@ document.addEventListener("DOMContentLoaded", function () {
             // Filter functionality
             const filterButtons = document.querySelectorAll('.filter-button-group button');
             filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     // Remove active class from all
                     filterButtons.forEach(btn => btn.classList.remove('active'));
                     // Add active class to clicked
                     this.classList.add('active');
-                    
+
                     const filterValue = this.getAttribute('data-filter');
                     iso.arrange({ filter: filterValue });
                 });
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 lightboxImg.src = img;
                 lightboxTitle.innerText = title;
                 lightboxCategory.innerText = category;
-                
+
                 lightbox.classList.add("active");
                 document.body.style.overflow = "hidden"; // Prevent scrolling
             });
