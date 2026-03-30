@@ -89,6 +89,50 @@ document.addEventListener("DOMContentLoaded", function () {
         console.warn("Isotope or ImagesLoaded failed to load. Please check your internet connection.");
     }
 
+    // ---------- PORTFOLIO LIGHTBOX ----------
+    const portfolioItems = document.querySelectorAll(".portfolio-item-inner");
+    const lightbox = document.getElementById("portfolio-lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxTitle = document.getElementById("lightbox-title");
+    const lightboxCategory = document.getElementById("lightbox-category");
+    const lightboxClose = document.querySelector(".close-lightbox");
+
+    if (portfolioItems.length > 0 && lightbox) {
+        portfolioItems.forEach(item => {
+            item.addEventListener("click", () => {
+                const img = item.querySelector("img").src;
+                const title = item.querySelector("h3").innerText;
+                const category = item.querySelector("p").innerText;
+
+                lightboxImg.src = img;
+                lightboxTitle.innerText = title;
+                lightboxCategory.innerText = category;
+                
+                lightbox.classList.add("active");
+                document.body.style.overflow = "hidden"; // Prevent scrolling
+            });
+        });
+
+        const closeLightbox = () => {
+            lightbox.classList.remove("active");
+            document.body.style.overflow = "";
+        };
+
+        lightboxClose.addEventListener("click", closeLightbox);
+
+        lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && lightbox.classList.contains("active")) {
+                closeLightbox();
+            }
+        });
+    }
+
     // ---------- BACK TO TOP ----------
     const backToTopBtn = document.getElementById("back-to-top");
 
