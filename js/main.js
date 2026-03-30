@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (videoId) {
                     lightboxImg.style.display = "none";
                     lightboxVideo.style.display = "block";
-                    lightboxVideo.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+                    lightboxVideo.src = `https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0`;
                 } else {
                     if (lightboxVideo) {
                         lightboxVideo.style.display = "none";
