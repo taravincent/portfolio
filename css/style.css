@@ -400,17 +400,14 @@ ul {
     text-align: center;
     color: var(--text-main);
     position: relative;
-    background: none;
-    border: none;
-    box-shadow: none;
     line-height: 1.6;
 }
 
 .skills-quote::before {
     content: '\201C';
     position: absolute;
-    top: -30px;
-    left: 20px;
+    top: 20px;
+    left: 30px;
     font-family: Georgia, serif;
     font-size: 8rem;
     font-weight: 800;
