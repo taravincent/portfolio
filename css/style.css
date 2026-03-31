@@ -1008,6 +1008,11 @@ blockquote footer {
     text-align: center;
     color: var(--text-main);
     font-weight: 600;
+    transition: opacity 0.5s ease;
+}
+
+.loading-status-hidden {
+    opacity: 0;
 }
 .loading-status p { margin-bottom: 0.5rem; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; }
 .loading-bar-wrap {
@@ -1016,7 +1021,7 @@ blockquote footer {
     background: rgba(255,255,255,0.1);
     border-radius: 4px;
     overflow: hidden;
-    margin-bottom: 0.5rem;
+    margin: 0 auto 0.5rem auto; /* Added auto margins left & right to center the block element */
 }
 #loading-bar {
     height: 100%;

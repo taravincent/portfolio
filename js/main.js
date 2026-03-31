@@ -16,16 +16,24 @@ document.addEventListener("DOMContentLoaded", function () {
             loadingPct.innerText = "100%";
             
             setTimeout(() => {
-                const meteorAnim = document.querySelector(".meteor-anim");
-                if (meteorAnim) {
-                    meteorAnim.classList.add("meteor-fly-away");
+                const loadingStatus = document.querySelector(".loading-status");
+                if (loadingStatus) {
+                    loadingStatus.classList.add("loading-status-hidden");
                 }
                 
-                // Wait for the fly-away animation to almost finish before fading
+                // Wait for the text to fade out before flying the meteor
                 setTimeout(() => {
-                    preloader.classList.add("preloader-hidden");
-                    document.body.style.overflow = ""; // Restore scrolling logic safely
-                }, 700); 
+                    const meteorAnim = document.querySelector(".meteor-anim");
+                    if (meteorAnim) {
+                        meteorAnim.classList.add("meteor-fly-away");
+                    }
+                    
+                    // Wait for the fly-away animation to almost finish before fading the whole layer
+                    setTimeout(() => {
+                        preloader.classList.add("preloader-hidden");
+                        document.body.style.overflow = ""; // Restore scrolling logic safely
+                    }, 700); 
+                }, 500); // Wait 500ms for text fade out to cleanly resolve
             }, 600); // Brief hang at 100% start so progress isn't jolted
         };
 
