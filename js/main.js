@@ -216,23 +216,28 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ---------- SKILLS PROGRESS BAR ANIMATION ----------
-    const skillsSection = document.getElementById("skills");
-    const progressBars = document.querySelectorAll(".progress-bar");
+    // ---------- INDIVIDUAL SKILLS PROGRESS BAR ANIMATION ----------
+    const skillItems = document.querySelectorAll(".skill-item");
 
-    if (skillsSection && progressBars.length > 0) {
-        const skillsObserver = new IntersectionObserver((entries) => {
+    if (skillItems.length > 0) {
+        const skillsObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    progressBars.forEach(bar => {
+                    const skillItem = entry.target;
+                    const bar = skillItem.querySelector(".progress-bar");
+                    
+                    if (bar) {
                         const targetWidth = bar.getAttribute("data-progress");
                         bar.style.width = targetWidth; // Triggers CSS transition
-                    });
-                    skillsObserver.unobserve(skillsSection); // Only animate once
+                    }
+                    
+                    observer.unobserve(skillItem); // Only animate once
                 }
             });
-        }, { threshold: 0.1 }); // Trigger when 10% visible
+        }, { threshold: 0.3 }); // Trigger when 30% of the individual item is visible
 
-        skillsObserver.observe(skillsSection);
+        skillItems.forEach(item => {
+            skillsObserver.observe(item);
+        });
     }
 });
