@@ -8,7 +8,7 @@
     <title>Tara Vincent | Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    
+
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
@@ -136,8 +136,8 @@
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#skills">Skills</a></li>
             <li><a href="#resume">Resume</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -203,7 +203,103 @@
         </div>
     </section>
 
-    <section id="skills" class="skills">
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Portfolio</h2>
+
+            <div class="filter-button-group">
+                <button class="active" data-filter="*">All</button>
+                <button data-filter=".web-design">Web Design</button>
+                <button data-filter=".video">Video</button>
+                <button data-filter=".art">Art</button>
+            </div>
+
+            <div class="grid">
+                <!-- Portfolio Item 1: Video -->
+                <div class="element-item video">
+                    <div class="portfolio-item-inner glass" data-video-id="v_Nu2V7Po1w">
+                        <img src="https://img.youtube.com/vi/v_Nu2V7Po1w/maxresdefault.jpg"
+                            alt="Once Upon a Time Thumbnail">
+                        <div class="portfolio-overlay">
+                            <h3>Once Upon a Time</h3>
+                            <p>Video</p>
+                        </div>
+                        <div class="portfolio-desc" style="display: none;">
+                            A captivating visual story where every frame was crafted with intention. I independently
+                            scripted, filmed, and comprehensively edited this entire project to bring this unique vision
+                            to life.
+                        </div>
+                    </div>
+                </div>
+                <!-- Portfolio Item 2: Video -->
+                <div class="element-item video">
+                    <div class="portfolio-item-inner glass" data-video-id="nFXM4eq3kGU">
+                        <img src="https://img.youtube.com/vi/nFXM4eq3kGU/maxresdefault.jpg"
+                            alt="Studio Production Final Thumbnail">
+                        <div class="portfolio-overlay">
+                            <h3>Studio Production Final</h3>
+                            <p>Video</p>
+                        </div>
+                        <div class="portfolio-desc" style="display: none;">
+                            As the primary lead for this fully-ran studio segment, I comprehensively scripted the
+                            narrative, designed engaging broadcast motion graphics, effectively assigned technical
+                            roles, and directed the multi-camera production from concept to completion.
+                        </div>
+                    </div>
+                </div>
+                <!-- Portfolio Item 3: Web Design -->
+                <div class="element-item web-design">
+                    <div class="portfolio-item-inner glass">
+                        <img src="images/five-pie-franchise-website.jpg" alt="Pie 5 Franchising Website">
+                        <div class="portfolio-overlay">
+                            <h3>Pie 5 Franchising</h3>
+                            <p>Web Design</p>
+                        </div>
+                        <div class="portfolio-desc" style="display: none;">
+                            A comprehensive digital platform engineered to educate prospective investors on a
+                            rapidly-scaling 'fresh gourmet pizza in five minutes' fast-casual franchise concept. This
+                            website features fully responsive mobile architecture and high-converting lead capture
+                            funnels optimized for franchise development.
+                        </div>
+                    </div>
+                </div>
+                <!-- Portfolio Item 4: Web Design -->
+                <div class="element-item web-design">
+                    <div class="portfolio-item-inner glass">
+                        <img src="images/tijuana-flats-website.png" alt="Tijuana Flats Website">
+                        <div class="portfolio-overlay">
+                            <h3>Tijuana Flats Website</h3>
+                            <p>Web Design</p>
+                        </div>
+                        <div class="portfolio-desc" style="display: none;">
+                            A dynamic restaurant franchise website designed to communicate a high-value investment
+                            opportunity setup for prospective business owners. This platform emphasizes robust lead
+                            capture and seamlessly integrates with FranConnect for precise data attribution. Key
+                            features include fully responsive mobile architecture and WCAG-compliant guaranteed
+                            accessibility. Ongoing services encompass full web management and targeted PPC digital
+                            marketing campaigns across Google and Facebook.
+                        </div>
+                    </div>
+                </div>
+                <!-- Portfolio Item 5: Video -->
+                <div class="element-item video">
+                    <div class="portfolio-item-inner glass" data-video-id="EDXQjGK8HD0">
+                        <img src="https://img.youtube.com/vi/EDXQjGK8HD0/maxresdefault.jpg"
+                            alt="PBS - Replay Museum Thumbnail">
+                        <div class="portfolio-overlay">
+                            <h3>PBS - Replay Museum</h3>
+                            <p>Video</p>
+                        </div>
+                        <div class="portfolio-desc" style="display: none;">
+                            A crucial contributor to the storytelling, filming, and comprehensive editing of this
+                            nationally broadcasted television segment, highlighting the historical and artistic
+                            significance of classic arcade and pinball machines.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>`r`n`r`n <section id="skills" class="skills">
         <div class="container">
             <h2 class="section-title">Skills & Knowledge</h2>
 
@@ -339,104 +435,6 @@
         </div>
     </section>
 
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <h2 class="section-title">Portfolio</h2>
-
-            <div class="filter-button-group">
-                <button class="active" data-filter="*">All</button>
-                <button data-filter=".web-design">Web Design</button>
-                <button data-filter=".video">Video</button>
-                <button data-filter=".art">Art</button>
-            </div>
-
-            <div class="grid">
-                <!-- Portfolio Item 1: Video -->
-                <div class="element-item video">
-                    <div class="portfolio-item-inner glass" data-video-id="v_Nu2V7Po1w">
-                        <img src="https://img.youtube.com/vi/v_Nu2V7Po1w/maxresdefault.jpg"
-                            alt="Once Upon a Time Thumbnail">
-                        <div class="portfolio-overlay">
-                            <h3>Once Upon a Time</h3>
-                            <p>Video</p>
-                        </div>
-                        <div class="portfolio-desc" style="display: none;">
-                            A captivating visual story where every frame was crafted with intention. I independently
-                            scripted, filmed, and comprehensively edited this entire project to bring this unique vision
-                            to life.
-                        </div>
-                    </div>
-                </div>
-                <!-- Portfolio Item 2: Video -->
-                <div class="element-item video">
-                    <div class="portfolio-item-inner glass" data-video-id="nFXM4eq3kGU">
-                        <img src="https://img.youtube.com/vi/nFXM4eq3kGU/maxresdefault.jpg"
-                            alt="Studio Production Final Thumbnail">
-                        <div class="portfolio-overlay">
-                            <h3>Studio Production Final</h3>
-                            <p>Video</p>
-                        </div>
-                        <div class="portfolio-desc" style="display: none;">
-                            As the primary lead for this fully-ran studio segment, I comprehensively scripted the
-                            narrative, designed engaging broadcast motion graphics, effectively assigned technical
-                            roles, and directed the multi-camera production from concept to completion.
-                        </div>
-                    </div>
-                </div>
-                <!-- Portfolio Item 3: Web Design -->
-                <div class="element-item web-design">
-                    <div class="portfolio-item-inner glass">
-                        <img src="images/five-pie-franchise-website.jpg" alt="Pie 5 Franchising Website">
-                        <div class="portfolio-overlay">
-                            <h3>Pie 5 Franchising</h3>
-                            <p>Web Design</p>
-                        </div>
-                        <div class="portfolio-desc" style="display: none;">
-                            A comprehensive digital platform engineered to educate prospective investors on a
-                            rapidly-scaling 'fresh gourmet pizza in five minutes' fast-casual franchise concept. This
-                            website features fully responsive mobile architecture and high-converting lead capture
-                            funnels optimized for franchise development.
-                        </div>
-                    </div>
-                </div>
-                <!-- Portfolio Item 4: Web Design -->
-                <div class="element-item web-design">
-                    <div class="portfolio-item-inner glass">
-                        <img src="images/tijuana-flats-website.png" alt="Tijuana Flats Website">
-                        <div class="portfolio-overlay">
-                            <h3>Tijuana Flats Website</h3>
-                            <p>Web Design</p>
-                        </div>
-                        <div class="portfolio-desc" style="display: none;">
-                            A dynamic restaurant franchise website designed to communicate a high-value investment
-                            opportunity setup for prospective business owners. This platform emphasizes robust lead
-                            capture and seamlessly integrates with FranConnect for precise data attribution. Key
-                            features include fully responsive mobile architecture and WCAG-compliant guaranteed
-                            accessibility. Ongoing services encompass full web management and targeted PPC digital
-                            marketing campaigns across Google and Facebook.
-                        </div>
-                    </div>
-                </div>
-                <!-- Portfolio Item 5: Video -->
-                <div class="element-item video">
-                    <div class="portfolio-item-inner glass" data-video-id="EDXQjGK8HD0">
-                        <img src="https://img.youtube.com/vi/EDXQjGK8HD0/maxresdefault.jpg"
-                            alt="PBS - Replay Museum Thumbnail">
-                        <div class="portfolio-overlay">
-                            <h3>PBS - Replay Museum</h3>
-                            <p>Video</p>
-                        </div>
-                        <div class="portfolio-desc" style="display: none;">
-                            A crucial contributor to the storytelling, filming, and comprehensive editing of this
-                            nationally broadcasted television segment, highlighting the historical and artistic
-                            significance of classic arcade and pinball machines.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="resume" class="resume">
         <div class="container">
             <h2 class="section-title">Resume</h2>
@@ -508,7 +506,7 @@
                     <div class="timeline-content">
                         <h4>St. Petersburg College</h4>
                         <h5>Associate of Science, Cinematography and Film/Video Production</h5>
-                        <p class="meta">2016 – 2020</p>
+                        <p class="meta">2016 â€“ 2020</p>
                         <p>Activities and societies: Web, Arts, and Visual Entertainment Club (President), Student
                             Government Association (Senator)</p>
                         <p>Led an inclusive digital media club. Assisted in school-based decision making.</p>
@@ -543,7 +541,7 @@
                 <p class="contact-blurb"
                     style="text-align: center; color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 2.5rem;">
                     Have a project in mind, need a creative collaborator, or simply want to chat about art and design?
-                    I'd love to connect! Skip the generic forms—reach out directly through email or connect with me on
+                    I'd love to connect! Skip the generic formsâ€”reach out directly through email or connect with me on
                     social media to see what we can create together.
                 </p>
                 <svg width="0" height="0" style="position: absolute;">

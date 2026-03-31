@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (preloader && loadingBar && loadingPct) {
         document.body.style.overflow = "hidden"; // Prevent scrolling while loading
-        
+
         const imgLoad = imagesLoaded(document.body);
         const totalImages = imgLoad.images.length;
         let loadedCount = 0;
@@ -14,33 +14,25 @@ document.addEventListener("DOMContentLoaded", function () {
         const finishLoading = () => {
             loadingBar.style.width = "100%";
             loadingPct.innerText = "100%";
-            
+
             setTimeout(() => {
-                const loadingStatus = document.querySelector(".loading-status");
-                if (loadingStatus) {
-                    loadingStatus.classList.add("loading-status-hidden");
+                const meteorAnim = document.querySelector(".meteor-anim");
+                if (meteorAnim) {
+                    meteorAnim.classList.add("meteor-fly-away");
                 }
-                
-                // Wait for the text to fade out before flying the meteor
+
+                // Wait for the fly-away animation to almost finish before fading
                 setTimeout(() => {
-                    const meteorAnim = document.querySelector(".meteor-anim");
-                    if (meteorAnim) {
-                        meteorAnim.classList.add("meteor-fly-away");
-                    }
-                    
-                    // Wait for the fly-away animation to almost finish before fading the whole layer
-                    setTimeout(() => {
-                        preloader.classList.add("preloader-hidden");
-                        document.body.style.overflow = ""; // Restore scrolling logic safely
-                    }, 700); 
-                }, 500); // Wait 500ms for text fade out to cleanly resolve
+                    preloader.classList.add("preloader-hidden");
+                    document.body.style.overflow = ""; // Restore scrolling logic safely
+                }, 700);
             }, 600); // Brief hang at 100% start so progress isn't jolted
         };
 
         if (totalImages === 0) {
             finishLoading();
         } else {
-            imgLoad.on('progress', function(instance, image) {
+            imgLoad.on('progress', function (instance, image) {
                 loadedCount++;
                 const p = Math.floor((loadedCount / totalImages) * 100);
                 loadingBar.style.width = p + "%";
@@ -48,9 +40,9 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             imgLoad.on('always', finishLoading);
-            
+
             // Fallback in case imagesLoaded stalls on a dead link
-            setTimeout(finishLoading, 8000); 
+            setTimeout(finishLoading, 8000);
         }
     }
 
@@ -244,11 +236,11 @@ document.addEventListener("DOMContentLoaded", function () {
         aboutImages.forEach(imgElement => {
             imgElement.addEventListener("click", () => {
                 const imgInfoWrap = document.querySelector(".lightbox-info");
-                if(imgInfoWrap) imgInfoWrap.style.display = "none"; // Hide info text for raw images
-                
+                if (imgInfoWrap) imgInfoWrap.style.display = "none"; // Hide info text for raw images
+
                 lightboxImg.style.display = "block";
                 lightboxImg.src = imgElement.src;
-                
+
                 const lightboxVideo = document.getElementById("lightbox-video");
                 if (lightboxVideo) {
                     lightboxVideo.style.display = "none";
@@ -266,7 +258,7 @@ document.addEventListener("DOMContentLoaded", function () {
         portfolioItems.forEach(item => {
             item.addEventListener("click", () => {
                 const imgInfoWrap = document.querySelector(".lightbox-info");
-                if(imgInfoWrap) imgInfoWrap.style.display = "block"; // Always ensure it's visible for portfolio
+                if (imgInfoWrap) imgInfoWrap.style.display = "block"; // Always ensure it's visible for portfolio
             });
         });
     }
@@ -280,12 +272,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (entry.isIntersecting) {
                     const skillItem = entry.target;
                     const bar = skillItem.querySelector(".progress-bar");
-                    
+
                     if (bar) {
                         const targetWidth = bar.getAttribute("data-progress");
                         bar.style.width = targetWidth; // Triggers CSS transition
                     }
-                    
+
                     observer.unobserve(skillItem); // Only animate once
                 }
             });
@@ -309,25 +301,25 @@ document.addEventListener("DOMContentLoaded", function () {
             canvas.width = width;
             canvas.height = height;
         };
-        
+
         window.addEventListener('resize', resize);
         resize();
 
         class Orb {
             constructor() {
                 // Mix of small stars and larger planets
-                this.radius = Math.random() * 60 + 5; 
+                this.radius = Math.random() * 60 + 5;
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
                 // Very slow drift
-                this.vx = (Math.random() - 0.5) * 0.4; 
+                this.vx = (Math.random() - 0.5) * 0.4;
                 this.vy = (Math.random() - 0.5) * 0.4;
-                
+
                 // Theme colors: Pink, middle purple/blue, Cyan
                 const colors = [
-                    { r: 176, g: 78, b: 157 }, 
-                    { r: 57, g: 197, b: 237 },  
-                    { r: 117, g: 136, b: 196 }  
+                    { r: 176, g: 78, b: 157 },
+                    { r: 57, g: 197, b: 237 },
+                    { r: 117, g: 136, b: 196 }
                 ];
                 this.color = colors[Math.floor(Math.random() * colors.length)];
                 this.alpha = Math.random() * 0.4 + 0.1; // Subtle transparency so it isn't distracting
@@ -340,7 +332,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Seamless screen wrapping
                 if (this.x < -this.radius) this.x = width + this.radius;
                 else if (this.x > width + this.radius) this.x = -this.radius;
-                
+
                 if (this.y < -this.radius) this.y = height + this.radius;
                 else if (this.y > height + this.radius) this.y = -this.radius;
             }
@@ -348,16 +340,16 @@ document.addEventListener("DOMContentLoaded", function () {
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                
+
                 // Draw as a glowing radial gradient
                 const gradient = ctx.createRadialGradient(
                     this.x, this.y, 0,
                     this.x, this.y, this.radius
                 );
-                
+
                 gradient.addColorStop(0, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.alpha})`);
                 gradient.addColorStop(1, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0)`);
-                
+
                 ctx.fillStyle = gradient;
                 ctx.fill();
             }
@@ -366,15 +358,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const initOrbs = () => {
             orbs = [];
             // Responsive number of orbs based on available screen space
-            const numOrbs = Math.floor((width * height) / 35000); 
+            const numOrbs = Math.floor((width * height) / 35000);
             for (let i = 0; i < numOrbs; i++) {
                 orbs.push(new Orb());
             }
         };
-        
+
         initOrbs();
         // Re-initialize softly on screen rotation/resize
-        window.addEventListener('resize', initOrbs); 
+        window.addEventListener('resize', initOrbs);
 
         const animate = () => {
             ctx.clearRect(0, 0, width, height);
@@ -384,7 +376,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
             requestAnimationFrame(animate);
         };
-        
+
         animate();
     }
 });
