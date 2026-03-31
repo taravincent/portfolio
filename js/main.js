@@ -240,4 +240,96 @@ document.addEventListener("DOMContentLoaded", function () {
             skillsObserver.observe(item);
         });
     }
+
+    // ---------- GLOWING ORBS BACKGROUND ----------
+    const canvas = document.getElementById('bg-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let orbs = [];
+
+        const resize = () => {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        };
+        
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Orb {
+            constructor() {
+                // Mix of small stars and larger planets
+                this.radius = Math.random() * 60 + 5; 
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                // Very slow drift
+                this.vx = (Math.random() - 0.5) * 0.4; 
+                this.vy = (Math.random() - 0.5) * 0.4;
+                
+                // Theme colors: Pink, middle purple/blue, Cyan
+                const colors = [
+                    { r: 176, g: 78, b: 157 }, 
+                    { r: 57, g: 197, b: 237 },  
+                    { r: 117, g: 136, b: 196 }  
+                ];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.alpha = Math.random() * 0.4 + 0.1; // Subtle transparency so it isn't distracting
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Seamless screen wrapping
+                if (this.x < -this.radius) this.x = width + this.radius;
+                else if (this.x > width + this.radius) this.x = -this.radius;
+                
+                if (this.y < -this.radius) this.y = height + this.radius;
+                else if (this.y > height + this.radius) this.y = -this.radius;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                
+                // Draw as a glowing radial gradient
+                const gradient = ctx.createRadialGradient(
+                    this.x, this.y, 0,
+                    this.x, this.y, this.radius
+                );
+                
+                gradient.addColorStop(0, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.alpha})`);
+                gradient.addColorStop(1, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0)`);
+                
+                ctx.fillStyle = gradient;
+                ctx.fill();
+            }
+        }
+
+        const initOrbs = () => {
+            orbs = [];
+            // Responsive number of orbs based on available screen space
+            const numOrbs = Math.floor((width * height) / 35000); 
+            for (let i = 0; i < numOrbs; i++) {
+                orbs.push(new Orb());
+            }
+        };
+        
+        initOrbs();
+        // Re-initialize softly on screen rotation/resize
+        window.addEventListener('resize', initOrbs); 
+
+        const animate = () => {
+            ctx.clearRect(0, 0, width, height);
+            orbs.forEach(orb => {
+                orb.update();
+                orb.draw();
+            });
+            requestAnimationFrame(animate);
+        };
+        
+        animate();
+    }
 });
