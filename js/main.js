@@ -182,4 +182,24 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 50);
         }, 3000); // Glitch every 3 seconds randomly
     }
+
+    // ---------- SKILLS PROGRESS BAR ANIMATION ----------
+    const skillsSection = document.getElementById("skills");
+    const progressBars = document.querySelectorAll(".progress-bar");
+
+    if (skillsSection && progressBars.length > 0) {
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    progressBars.forEach(bar => {
+                        const targetWidth = bar.getAttribute("data-progress");
+                        bar.style.width = targetWidth; // Triggers CSS transition
+                    });
+                    skillsObserver.unobserve(skillsSection); // Only animate once
+                }
+            });
+        }, { threshold: 0.1 }); // Trigger when 10% visible
+
+        skillsObserver.observe(skillsSection);
+    }
 });
