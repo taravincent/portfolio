@@ -1,4 +1,51 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // ---------- GLOBAL ASSET PRELOADER ----------
+    const preloader = document.getElementById("preloader");
+    const loadingBar = document.getElementById("loading-bar");
+    const loadingPct = document.getElementById("loading-percentage");
+
+    if (preloader && loadingBar && loadingPct) {
+        document.body.style.overflow = "hidden"; // Prevent scrolling while loading
+        
+        const imgLoad = imagesLoaded(document.body);
+        const totalImages = imgLoad.images.length;
+        let loadedCount = 0;
+
+        const finishLoading = () => {
+            loadingBar.style.width = "100%";
+            loadingPct.innerText = "100%";
+            
+            setTimeout(() => {
+                const meteorAnim = document.querySelector(".meteor-anim");
+                if (meteorAnim) {
+                    meteorAnim.classList.add("meteor-fly-away");
+                }
+                
+                // Wait for the fly-away animation to almost finish before fading
+                setTimeout(() => {
+                    preloader.classList.add("preloader-hidden");
+                    document.body.style.overflow = ""; // Restore scrolling logic safely
+                }, 700); 
+            }, 600); // Brief hang at 100% start so progress isn't jolted
+        };
+
+        if (totalImages === 0) {
+            finishLoading();
+        } else {
+            imgLoad.on('progress', function(instance, image) {
+                loadedCount++;
+                const p = Math.floor((loadedCount / totalImages) * 100);
+                loadingBar.style.width = p + "%";
+                loadingPct.innerText = p + "%";
+            });
+
+            imgLoad.on('always', finishLoading);
+            
+            // Fallback in case imagesLoaded stalls on a dead link
+            setTimeout(finishLoading, 8000); 
+        }
+    }
+
     // ---------- HAMBURGER MENU ----------
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector(".nav-links");
