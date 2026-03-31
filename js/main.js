@@ -183,6 +183,39 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 3000); // Glitch every 3 seconds randomly
     }
 
+    // ---------- ABOUT IMAGES LIGHTBOX ----------
+    const aboutImages = document.querySelectorAll(".about-img-left, .about-img-right");
+    if (aboutImages.length > 0 && lightbox) {
+        aboutImages.forEach(imgElement => {
+            imgElement.addEventListener("click", () => {
+                const imgInfoWrap = document.querySelector(".lightbox-info");
+                if(imgInfoWrap) imgInfoWrap.style.display = "none"; // Hide info text for raw images
+                
+                lightboxImg.style.display = "block";
+                lightboxImg.src = imgElement.src;
+                
+                const lightboxVideo = document.getElementById("lightbox-video");
+                if (lightboxVideo) {
+                    lightboxVideo.style.display = "none";
+                    lightboxVideo.src = "";
+                }
+
+                lightbox.classList.add("active");
+                document.body.style.overflow = "hidden";
+            });
+        });
+    }
+
+    // Restore info display when launching portfolio items
+    if (portfolioItems.length > 0 && lightbox) {
+        portfolioItems.forEach(item => {
+            item.addEventListener("click", () => {
+                const imgInfoWrap = document.querySelector(".lightbox-info");
+                if(imgInfoWrap) imgInfoWrap.style.display = "block"; // Always ensure it's visible for portfolio
+            });
+        });
+    }
+
     // ---------- SKILLS PROGRESS BAR ANIMATION ----------
     const skillsSection = document.getElementById("skills");
     const progressBars = document.querySelectorAll(".progress-bar");

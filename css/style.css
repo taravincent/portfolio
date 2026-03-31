@@ -314,6 +314,41 @@ ul {
     text-align: left;
 }
 
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.about-img-left {
+    float: left;
+    max-width: 280px;
+    width: 45%;
+    height: auto;
+    margin: 0.5rem 1.8rem 1rem 0;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    cursor: pointer;
+    transition: var(--transition-med);
+}
+
+.about-img-right {
+    float: right;
+    max-width: 250px;
+    width: 40%;
+    height: auto;
+    margin: 0.5rem 0 1rem 1.8rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    cursor: pointer;
+    transition: var(--transition-med);
+}
+
+.about-img-left:hover, .about-img-right:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px rgba(233, 0, 255, 0.3);
+}
+
 .about-wrapper p {
     font-size: 1.1rem;
     line-height: 1.8;
