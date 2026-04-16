@@ -230,7 +230,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     currentGalleryFolder = galleryFolder;
                     currentGalleryCount = galleryCount;
                     
-                    const match = img.match(/(\d+)\.jpeg$/);
+                    const decodedImg = decodeURIComponent(img);
+                    const match = decodedImg.match(/(\d+)\.jpeg$/);
                     currentGalleryIndex = match ? parseInt(match[1], 10) : 1;
                     
                     if (lightboxThumbnails) {
