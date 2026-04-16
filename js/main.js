@@ -97,6 +97,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    // ---------- RANDOM PORTFOLIO IMAGES ----------
+    const randomThumbnails = document.querySelectorAll('.random-thumbnail');
+    randomThumbnails.forEach(img => {
+        const folder = img.closest('.portfolio-item-inner').getAttribute('data-gallery-folder');
+        const count = parseInt(img.closest('.portfolio-item-inner').getAttribute('data-gallery-count'), 10);
+        if (folder && count) {
+            const randomNum = Math.floor(Math.random() * count) + 1;
+            const formattedNum = randomNum.toString().padStart(2, '0');
+            img.src = `images/albums/${folder}/${folder} ${formattedNum}.jpeg`;
+        }
+    });
+
     // ---------- ISOTOPE PORTFOLIO FILTERING ----------
     // Initialize Isotope after images are loaded
     const grid = document.querySelector('.grid');
@@ -143,6 +155,44 @@ document.addEventListener("DOMContentLoaded", function () {
     const lightboxTitle = document.getElementById("lightbox-title");
     const lightboxCategory = document.getElementById("lightbox-category");
     const lightboxClose = document.querySelector(".close-lightbox");
+    const galleryPrevBtn = document.getElementById("gallery-prev");
+    const galleryNextBtn = document.getElementById("gallery-next");
+    const lightboxThumbnails = document.getElementById("lightbox-thumbnails");
+
+    let currentGalleryFolder = "";
+    let currentGalleryCount = 0;
+    let currentGalleryIndex = 1;
+
+    const updateGalleryImage = () => {
+        const formattedNum = currentGalleryIndex.toString().padStart(2, '0');
+        lightboxImg.src = `images/albums/${currentGalleryFolder}/${currentGalleryFolder} ${formattedNum}.jpeg`;
+        
+        if (lightboxThumbnails) {
+            const thumbs = lightboxThumbnails.querySelectorAll('.lightbox-thumbnail');
+            thumbs.forEach((thumb, idx) => {
+                if (idx + 1 === currentGalleryIndex) {
+                    thumb.classList.add('active');
+                    // Scroll active thumbnail into horizontal view nicely
+                    thumb.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+    };
+
+    if (galleryPrevBtn && galleryNextBtn) {
+        galleryPrevBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            currentGalleryIndex = currentGalleryIndex > 1 ? currentGalleryIndex - 1 : currentGalleryCount;
+            updateGalleryImage();
+        });
+        galleryNextBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            currentGalleryIndex = currentGalleryIndex < currentGalleryCount ? currentGalleryIndex + 1 : 1;
+            updateGalleryImage();
+        });
+    }
 
     if (portfolioItems.length > 0 && lightbox) {
         portfolioItems.forEach(item => {
@@ -153,6 +203,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 const descElem = item.querySelector(".portfolio-desc");
                 const description = descElem ? descElem.innerText : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
                 const videoId = item.getAttribute("data-video-id");
+                const galleryFolder = item.getAttribute("data-gallery-folder");
+                const galleryCount = parseInt(item.getAttribute("data-gallery-count") || "0", 10);
 
                 const lightboxVideo = document.getElementById("lightbox-video");
                 const lightboxDesc = document.getElementById("lightbox-description");
@@ -165,6 +217,49 @@ document.addEventListener("DOMContentLoaded", function () {
                     lightboxImg.style.display = "none";
                     lightboxVideo.style.display = "block";
                     lightboxVideo.src = `https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0`;
+                    if (galleryPrevBtn) galleryPrevBtn.style.display = "none";
+                    if (galleryNextBtn) galleryNextBtn.style.display = "none";
+                } else if (galleryFolder && galleryCount > 0) {
+                    if (lightboxVideo) {
+                        lightboxVideo.style.display = "none";
+                        lightboxVideo.src = "";
+                    }
+                    lightboxImg.style.display = "block";
+                    lightboxImg.src = img;
+                    
+                    currentGalleryFolder = galleryFolder;
+                    currentGalleryCount = galleryCount;
+                    
+                    const match = img.match(/(\d+)\.jpeg$/);
+                    currentGalleryIndex = match ? parseInt(match[1], 10) : 1;
+                    
+                    if (lightboxThumbnails) {
+                        lightboxThumbnails.innerHTML = '';
+                        lightboxThumbnails.style.display = 'flex';
+                        for (let i = 1; i <= currentGalleryCount; i++) {
+                            const formatted = i.toString().padStart(2, '0');
+                            const thumbSrc = `images/albums/${currentGalleryFolder}/${currentGalleryFolder} ${formatted}.jpeg`;
+                            const imgElem = document.createElement("img");
+                            imgElem.src = thumbSrc;
+                            imgElem.className = "lightbox-thumbnail";
+                            if (i === currentGalleryIndex) {
+                                imgElem.classList.add("active");
+                                // We ensure it scrolls into view after UI renders
+                                setTimeout(() => {
+                                    imgElem.scrollIntoView({ behavior: "auto", block: "nearest", inline: "center" });
+                                }, 10);
+                            }
+                            imgElem.addEventListener("click", (e) => {
+                                e.stopPropagation();
+                                currentGalleryIndex = i;
+                                updateGalleryImage();
+                            });
+                            lightboxThumbnails.appendChild(imgElem);
+                        }
+                    }
+
+                    if (galleryPrevBtn) galleryPrevBtn.style.display = "block";
+                    if (galleryNextBtn) galleryNextBtn.style.display = "block";
                 } else {
                     if (lightboxVideo) {
                         lightboxVideo.style.display = "none";
@@ -172,6 +267,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                     lightboxImg.style.display = "block";
                     lightboxImg.src = img;
+                    if (lightboxThumbnails) lightboxThumbnails.style.display = "none";
+                    if (galleryPrevBtn) galleryPrevBtn.style.display = "none";
+                    if (galleryNextBtn) galleryNextBtn.style.display = "none";
                 }
 
                 lightbox.classList.add("active");

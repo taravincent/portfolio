@@ -211,7 +211,7 @@
                 <button class="active" data-filter="*">All</button>
                 <button data-filter=".web-design">Web Design</button>
                 <button data-filter=".video">Video</button>
-                <button data-filter=".art">Art</button>
+                <button data-filter=".photography">Photography</button>
             </div>
 
             <div class="grid">
@@ -294,6 +294,19 @@
                             A crucial contributor to the storytelling, filming, and comprehensive editing of this
                             nationally broadcasted television segment, highlighting the historical and artistic
                             significance of classic arcade and pinball machines.
+                        </div>
+                    </div>
+                </div>
+                <!-- Portfolio Item 6: Photography -->
+                <div class="element-item photography">
+                    <div class="portfolio-item-inner glass" data-gallery-folder="Suncoast Jazz Festival" data-gallery-count="9">
+                        <img src="" alt="Suncoast Jazz Festival Thumbnail" class="random-thumbnail">
+                        <div class="portfolio-overlay">
+                            <h3>Suncoast Jazz Festival</h3>
+                            <p>Photography</p>
+                        </div>
+                        <div class="portfolio-desc" style="display: none;">
+                            Get ready to tap your toes, because the Suncoast Jazz Festival brings Clearwater Beach to life with incredible live music from over 80 amazing musicians across three stages! From the classic roots of early jazz to swinging blues and everything in between, it's a non-stop musical celebration. Grab your dancing shoes for the swing dance party, join the fun parasol parade, or just relax and enjoy world-renowned artists jamming alongside our favorite local talent. Proudly run by a passionate nonprofit, it's all about keeping the spirit of jazz alive and kicking!
                         </div>
                     </div>
                 </div>
@@ -613,12 +626,17 @@
         <div class="lightbox-content glass">
             <span class="close-lightbox">&times;</span>
             <div class="lightbox-body">
-                <div class="lightbox-img-wrapper">
-                    <img id="lightbox-img" src="" alt="Portfolio Item">
-                    <iframe id="lightbox-video" src="" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen referrerpolicy="strict-origin-when-cross-origin"
-                        style="display:none; width:100%; height:100%; aspect-ratio: 16/9;"></iframe>
+                <div class="lightbox-media-container">
+                    <div class="lightbox-img-wrapper" style="position: relative;">
+                        <button class="gallery-nav prev" id="gallery-prev" style="display:none;">&#10094;</button>
+                        <img id="lightbox-img" src="" alt="Portfolio Item">
+                        <iframe id="lightbox-video" src="" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen referrerpolicy="strict-origin-when-cross-origin"
+                            style="display:none; width:100%; height:100%; aspect-ratio: 16/9;"></iframe>
+                        <button class="gallery-nav next" id="gallery-next" style="display:none;">&#10095;</button>
+                    </div>
+                    <div class="lightbox-thumbnails" id="lightbox-thumbnails" style="display: none;"></div>
                 </div>
                 <div class="lightbox-info">
                     <h3 id="lightbox-title">Title</h3>

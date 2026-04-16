@@ -65,6 +65,7 @@ ul {
     text-align: center;
     background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -683,7 +684,7 @@ ul {
 
 .lightbox-content {
     position: relative;
-    max-width: 900px;
+    max-width: 1200px;
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
@@ -722,8 +723,16 @@ ul {
     }
 }
 
-.lightbox-img-wrapper {
+.lightbox-media-container {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 100%;
+}
+
+.lightbox-img-wrapper {
+    width: 100%;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
@@ -732,7 +741,73 @@ ul {
 .lightbox-img-wrapper img {
     width: 100%;
     height: auto;
+    max-height: 60vh;
+    object-fit: contain;
     display: block;
+}
+
+.lightbox-thumbnails {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding: 0.5rem;
+}
+
+.lightbox-thumbnails::-webkit-scrollbar {
+    height: 6px;
+}
+
+.lightbox-thumbnails::-webkit-scrollbar-thumb {
+    background: var(--glass-border);
+    border-radius: 3px;
+}
+
+.lightbox-thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: var(--transition-fast);
+    border: 2px solid transparent;
+    flex-shrink: 0;
+}
+
+.lightbox-thumbnail:hover {
+    opacity: 0.8;
+}
+
+.lightbox-thumbnail.active {
+    opacity: 1;
+    border-color: var(--accent-2);
+}
+
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    font-size: 2rem;
+    border-radius: 5px;
+    transition: var(--transition-fast);
+    z-index: 10;
+}
+
+.gallery-nav:hover {
+    background: var(--accent-1);
+}
+
+.gallery-nav.prev {
+    left: 10px;
+}
+
+.gallery-nav.next {
+    right: 10px;
 }
 
 .lightbox-info {
